@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SINPAGAC - Sinistro Pagamento Aceito de Cosseguro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; background: white; min-height: 100vh; }
+        header { background: linear-gradient(135deg, #27ae60 0%, #229954 100%); color: white; padding: 30px 0; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header .subtitle { font-size: 1.2em; opacity: 0.9; }
+        nav { background: #2d3748; padding: 15px 0; margin-bottom: 30px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        nav a { color: white; text-decoration: none; padding: 8px 16px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(255,255,255,0.1); }
+        nav a.active { background: #27ae60; }
+        h2 { color: #27ae60; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #27ae60; }
+        h3 { color: #229954; margin: 25px 0 12px 0; }
+        h4 { color: #4a5568; margin: 20px 0 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th { background: #27ae60; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
+        tr:hover { background: #f7fafc; }
+        .code-block { background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; font-family: 'Courier New', monospace; }
+        .alert { padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid; }
+        .alert-info { background: #ebf8ff; border-color: #3182ce; color: #2c5282; }
+        .alert-warning { background: #fffaf0; border-color: #dd6b20; color: #7c2d12; }
+        .alert-success { background: #f0fff4; border-color: #38a169; color: #22543d; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; }
+        .badge-primary { background: #667eea; color: white; }
+        .badge-success { background: #48bb78; color: white; }
+        .badge-warning { background: #ed8936; color: white; }
+        .card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        footer { margin-top: 50px; padding: 20px 0; border-top: 2px solid #e2e8f0; text-align: center; color: #718096; }
+        .breadcrumb { margin-bottom: 20px; color: #718096; }
+        .breadcrumb a { color: #667eea; text-decoration: none; }
+        code { background: #edf2f7; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        pre code { background: none; padding: 0; }
+        .highlight { background: #d4edda; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
+        .simplicity { background: #d4edda; padding: 10px; border-left: 4px solid #28a745; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>💵 SINPAGAC</h1>
+            <p class="subtitle">Sinistro Pagamento Aceito de Cosseguro</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="../../index.html">🏠 Home</a></li>
+                <li><a href="index.html">📋 Visão Geral</a></li>
+                <li><a href="premac.html">PREMAC</a></li>
+                <li><a href="premrecac.html">PREMRECAC</a></li>
+                <li><a href="premrecebc.html">PREMRECEBC</a></li>
+                <li><a href="respremc.html">RESPREMC</a></li>
+                <li><a href="sinavac.html">SINAVAC</a></li>
+                <li><a href="sinpagac.html" class="active">SINPAGAC</a></li>
+                <li><a href="sinpendac.html">SINPENDAC</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="../../index.html">Home</a> / 
+            <a href="index.html">Retornos</a> / 
+            <span>SINPAGAC</span>
+        </div>
+
+        <h1>💵 SINPAGAC - Sinistro Pagamento Aceito de Cosseguro</h1>
+
+        <div class="alert alert-info">
+            <strong>ℹ️ Descrição:</strong> Pagamentos efetivos de sinistros (baixa financeira), representando valores já pagos aos segurados no cosseguro aceito.
+        </div>
+
+        <div class="simplicity">
+            <strong>✅ COMPLEXIDADE BAIXA:</strong> Diferente do SINAVAC, este arquivo usa <strong>apenas ClaimCase</strong> (sem buscar ARAP), tornando o processamento muito mais rápido e simples.
+        </div>
+
+        <h2>🔧 Especificações Técnicas</h2>
+        <table>
+            <tr>
+                <th>Propriedade</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td><strong>Módulo</strong></td>
+                <td>ClaimCase (Index) apenas</td>
+            </tr>
+            <tr>
+                <td><strong>Filtros</strong></td>
+                <td><code>BaseDate</code>, <code>owned_org_code=bmg</code></td>
+            </tr>
+            <tr>
+                <td><strong>Sem filtro</strong></td>
+                <td>CaseStatus (processa todos os status)</td>
+            </tr>
+            <tr>
+                <td><strong>Total de Campos</strong></td>
+                <td>14 campos</td>
+            </tr>
+            <tr>
+                <td><strong>Complexidade</strong></td>
+                <td><span class="badge badge-success">Baixa</span></td>
+            </tr>
+        </table>
+
+        <h2>📋 Estrutura do Arquivo CSV</h2>
+        <div class="code-block">
+SEQUENCIA|COD_CIA|DT_BASE|TIPO_MOV|COD_RAMO|COD_COSS|NUM_SIN|NUM_APOL|NUM_END|DT_REG|DT_AVISO|DT_OCOR|VR_MOV|TP_SIN
+0000000001|03417|202509|07|0553|05908|SIN123|POL123|END001|20250910|20250905|20250901|5000.00|01
+        </div>
+
+        <h2>📝 Descrição dos Campos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>SEQUENCIA</code></td>
+                    <td>Numérico</td>
+                    <td>Número sequencial do registro</td>
+                </tr>
+                <tr>
+                    <td><code>COD_CIA</code></td>
+                    <td>Texto</td>
+                    <td>Código da companhia (03417)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_BASE</code></td>
+                    <td>Texto</td>
+                    <td>Data base (YYYYMM)</td>
+                </tr>
+                <tr>
+                    <td><code>TIPO_MOV</code></td>
+                    <td>Numérico</td>
+                    <td>Tipo de movimento (07, 08)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_RAMO</code></td>
+                    <td>Texto</td>
+                    <td>Código do ramo (<code>ExtBranchCode</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_COSS</code></td>
+                    <td>Texto</td>
+                    <td>Código do cosseguro (05908)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_SIN</code></td>
+                    <td>Texto</td>
+                    <td>Número do sinistro (<code>ExtClaimNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_APOL</code></td>
+                    <td>Texto</td>
+                    <td>Número da apólice (<code>ExtPolicyNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_END</code></td>
+                    <td>Texto</td>
+                    <td>Número do endosso (<code>ExtEndoNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_REG</code></td>
+                    <td>Data</td>
+                    <td>Data de registro (<code>ExtRegistrationDate</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_AVISO</code></td>
+                    <td>Data</td>
+                    <td>Data do aviso (<code>NoticeTime</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_OCOR</code></td>
+                    <td>Data</td>
+                    <td>Data da ocorrência (<code>AccidentTime</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>VR_MOV</code></td>
+                    <td>Decimal</td>
+                    <td><span class="highlight">Valor pago</span> (<code>ExtCededCoinsuranceAmount</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>TP_SIN</code></td>
+                    <td>Texto</td>
+                    <td>Tipo do sinistro (<code>ExtClaimType</code>)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🔄 Lógica de Negócio - Single Module</h2>
+
+        <div class="alert alert-success">
+            <strong>✅ Simplicidade:</strong> SINPAGAC usa <strong>apenas ClaimCase</strong>, sem necessidade de buscar ARAP. Todos os dados vêm de um único módulo.
+        </div>
+
+        <h3>Implementação Simplificada</h3>
+        <pre><code class="language-groovy">// Busca diretamente do ClaimCase (sem buscar ARAP)
+List&lt;Map&gt; claimDocs = fetchClaimsBatch(baseDate, cursorId)
+
+claimDocs.each { claimDoc ->
+    // Usa ExtMovementType e ExtCededCoinsuranceAmount do ClaimCase
+    generateLine(
+        tipoMov: resolveSusepMovType(claimDoc.ExtMovementType),
+        vrMov: claimDoc.ExtCededCoinsuranceAmount,
+        numSin: claimDoc.ExtClaimNo,
+        numApol: claimDoc.ExtPolicyNo,
+        // ... outros campos do ClaimCase
+    )
+}</code></pre>
+
+        <h2>🔢 Conversão de TipoMov (Foco em Pagamentos)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>SUSEP</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge badge-primary">207</span></td>
+                    <td><span class="badge badge-success">07</span></td>
+                    <td>Pagamento principal</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">208</span></td>
+                    <td><span class="badge badge-success">08</span></td>
+                    <td>Pagamento complementar</td>
+                </tr>
+                <tr>
+                    <td>Outros</td>
+                    <td><span class="badge badge-success">01</span></td>
+                    <td>Default (fallback)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pre><code class="language-groovy">String resolveSusepMovType(String platformMovType) {
+    switch (platformMovType) {
+        case "207": return "07"
+        case "208": return "08"
+        default: return "01"
+    }
+}</code></pre>
+
+        <h2>📊 Diferenças vs SINAVAC</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspecto</th>
+                    <th>SINAVAC</th>
+                    <th>SINPAGAC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Módulos</strong></td>
+                    <td>ClaimCase + ARAP</td>
+                    <td><span class="highlight">ClaimCase apenas</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Foco</strong></td>
+                    <td>Avisos (histórico completo)</td>
+                    <td>Pagamentos efetivos</td>
+                </tr>
+                <tr>
+                    <td><strong>TipoMov</strong></td>
+                    <td>201→01, 204→04, 211→11, 214→14</td>
+                    <td>207→07, 208→08</td>
+                </tr>
+                <tr>
+                    <td><strong>Linhas por Sinistro</strong></td>
+                    <td>N (por ARAP Transaction)</td>
+                    <td>1 (por ClaimCase)</td>
+                </tr>
+                <tr>
+                    <td><strong>Complexidade</strong></td>
+                    <td><span class="badge badge-warning">Alta</span></td>
+                    <td><span class="badge badge-success">Baixa</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Performance</strong></td>
+                    <td>~20 registros/segundo</td>
+                    <td>~50 registros/segundo</td>
+                </tr>
+                <tr>
+                    <td><strong>Total de Campos</strong></td>
+                    <td>16</td>
+                    <td>14</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🗂️ Fonte de Dados</h2>
+        <div class="card">
+            <h4>Estrutura JSON (ClaimCase):</h4>
+            <pre><code class="language-json">{
+  "ClaimId": 67890,
+  "ExtClaimNo": "SIN123",
+  "ExtPolicyNo": "POL123",
+  "ExtEndoNo": "END001",
+  "ExtRegistrationDate": "2025-09-10",
+  "NoticeTime": "2025-09-05T14:30:00",
+  "AccidentTime": "2025-09-01T10:00:00",
+  "ExtBranchCode": "0553",
+  "ExtClaimType": "01",
+  "ExtMovementType": "207",
+  "ExtCededCoinsuranceAmount": 5000.00
+}</code></pre>
+        </div>
+
+        <h2>📤 Saída do Arquivo</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Localização</th>
+            </tr>
+            <tr>
+                <td><strong>CSV de Export</strong></td>
+                <td><code>s3://bucket/export/SINPAGAC_202509_20260305_143022.csv</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log Detalhado</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/SINPAGAC/SINPAGAC_DETAILED_202509_20260305_143022.log</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log de Erros</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/SINPAGAC/error/LOG_SINPAGAC_202509_*.csv</code></td>
+            </tr>
+        </table>
+
+        <h2>🚀 Exemplo de Uso</h2>
+        <pre><code class="language-groovy">// Executar export para setembro/2025
+process("202509")</code></pre>
+
+        <div class="alert alert-success">
+            <strong>✅ Resultado esperado:</strong>
+            <ul>
+                <li>10 sinistros pagos → <strong>10 linhas</strong> (1 linha por sinistro)</li>
+                <li>Processamento rápido (~50 registros/segundo)</li>
+                <li>Sem necessidade de buscar ARAP</li>
+            </ul>
+        </div>
+
+        <h2>⚡ Vantagens de Performance</h2>
+        <div class="card">
+            <ul>
+                <li>✅ <strong>Single module:</strong> Apenas ClaimCase (sem ARAP)</li>
+                <li>✅ <strong>Sem paginação:</strong> Não precisa paginar ARAP</li>
+                <li>✅ <strong>1 linha/sinistro:</strong> Resultado previsível</li>
+                <li>✅ <strong>Processamento rápido:</strong> 2.5x mais rápido que SINAVAC</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 BMG Seguros - Sistema de Exportação de Cosseguro</p>
+            <p>Última atualização: 05/03/2026 | Versão: 1.0.0</p>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-groovy.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+</body>
+</html>
