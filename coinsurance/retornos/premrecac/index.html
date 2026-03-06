@@ -3,7 +3,477 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PREMRECAC - Prêmio Recebível Aceito de Cosseguro</title>
+    <title>PREMAC - Prêmio Aceito de Cosseguro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; background: white; min-height: 100vh; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px 0; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header .subtitle { font-size: 1.2em; opacity: 0.9; }
+        nav { background: #2d3748; padding: 15px 0; margin-bottom: 30px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        nav a { color: white; text-decoration: none; padding: 8px 16px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(255,255,255,0.1); }
+        nav a.active { background: #667eea; }
+        h2 { color: #667eea; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #764ba2; margin: 25px 0 12px 0; }
+        h4 { color: #4a5568; margin: 20px 0 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th { background: #667eea; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
+        tr:hover { background: #f7fafc; }
+        .code-block { background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; font-family: 'Courier New', monospace; }
+        .alert { padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid; }
+        .alert-info { background: #ebf8ff; border-color: #3182ce; color: #2c5282; }
+        .alert-warning { background: #fffaf0; border-color: #dd6b20; color: #7c2d12; }
+        .alert-success { background: #f0fff4; border-color: #38a169; color: #22543d; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; }
+        .badge-primary { background: #667eea; color: white; }
+        .badge-success { background: #48bb78; color: white; }
+        .badge-warning { background: #ed8936; color: white; }
+        .badge-danger { background: #f56565; color: white; }
+        .card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .card-title { font-size: 1.3em; color: #667eea; margin-bottom: 10px; }
+        footer { margin-top: 50px; padding: 20px 0; border-top: 2px solid #e2e8f0; text-align: center; color: #718096; }
+        .breadcrumb { margin-bottom: 20px; color: #718096; }
+        .breadcrumb a { color: #667eea; text-decoration: none; }
+        .breadcrumb a:hover { text-decoration: underline; }
+        code { background: #edf2f7; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        pre code { background: none; padding: 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🏦 PREMAC</h1>
+            <p class="subtitle">Prêmio Aceito de Cosseguro</p>
+        </div>
+    </header>
+
+
+
+    <div class="container">
+        <div class="breadcrumb">
+
+            <span>PREMAC</span>
+        </div>
+
+        <h1>📊 PREMAC - Prêmio Aceito de Cosseguro</h1>
+
+        <div class="alert alert-info">
+            <strong>ℹ️ Descrição:</strong> Movimentos de prêmio com valores consolidados por ramo, representando a visão do aceito (BMG) sobre emissões e endossos de apólices de cosseguro.
+        </div>
+
+        <h2>🔧 Especificações Técnicas</h2>
+        <table>
+            <tr>
+                <th>Propriedade</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td><strong>Módulo</strong></td>
+                <td>Policy (PolicyCore)</td>
+            </tr>
+            <tr>
+                <td><strong>Filtros</strong></td>
+                <td><code>BaseDate</code>, <code>CodCoss=05908</code></td>
+            </tr>
+            <tr>
+                <td><strong>Total de Campos</strong></td>
+                <td>26 campos</td>
+            </tr>
+            <tr>
+                <td><strong>Agregação</strong></td>
+                <td>Por Ramo (<code>CodRamo</code>)</td>
+            </tr>
+            <tr>
+                <td><strong>Delimitador</strong></td>
+                <td>Pipe (<code>|</code>)</td>
+            </tr>
+            <tr>
+                <td><strong>Encoding</strong></td>
+                <td>UTF-8</td>
+            </tr>
+        </table>
+
+        <h2>📋 Estrutura do Arquivo CSV</h2>
+        <div class="code-block">
+SEQUENCIA|COD_CIA|NUM_PROC|DT_BASE|TIPO_MOV|UF_DEP|UF_RISCO|COD_RAMO|NUM_APOL|NUM_END|COD_COSS|DT_EMIS|DT_INI_VIG|DT_FIM_VIG|PR_COSS_AC|COM_COSS_AC|PR_EMIT|AD_FRAC|COFEE|PRO_LAB|CD_PRODUTO|DS_PRODUTO|NUM_PROP|DT_PROP|CPF_SEG|PRC_COMISS_COFEE
+0000000001|03417||202509|101|||0553|POL123|00000000000000000000|05908|20250901|20250901|20260901|1500.00|150.00|1500.00|0.00|50.00|30.00|||PROP123|20250815||
+        </div>
+
+        <h2>📝 Descrição dos Campos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Tipo</th>
+                    <th>Tamanho</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>SEQUENCIA</code></td>
+                    <td>Numérico</td>
+                    <td>10</td>
+                    <td>Número sequencial do registro (incremental)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_CIA</code></td>
+                    <td>Texto</td>
+                    <td>5</td>
+                    <td>Código da companhia (fixo: <strong>03417</strong>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_PROC</code></td>
+                    <td>Texto</td>
+                    <td>20</td>
+                    <td>Número do processo (não utilizado)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_BASE</code></td>
+                    <td>Texto</td>
+                    <td>6</td>
+                    <td>Data base do período (formato: YYYYMM)</td>
+                </tr>
+                <tr>
+                    <td><code>TIPO_MOV</code></td>
+                    <td>Numérico</td>
+                    <td>3</td>
+                    <td>Tipo de movimento SUSEP (101, 102, 105)</td>
+                </tr>
+                <tr>
+                    <td><code>UF_DEP</code></td>
+                    <td>Texto</td>
+                    <td>2</td>
+                    <td>UF de dependência (não utilizado)</td>
+                </tr>
+                <tr>
+                    <td><code>UF_RISCO</code></td>
+                    <td>Texto</td>
+                    <td>2</td>
+                    <td>UF do risco (não utilizado)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_RAMO</code></td>
+                    <td>Texto</td>
+                    <td>4</td>
+                    <td>Código do ramo SUSEP</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_APOL</code></td>
+                    <td>Texto</td>
+                    <td>20</td>
+                    <td>Número da apólice líder (<code>LeaderPolicyNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_END</code></td>
+                    <td>Texto</td>
+                    <td>20</td>
+                    <td>Número do endosso líder (zeros para emissão)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_COSS</code></td>
+                    <td>Texto</td>
+                    <td>5</td>
+                    <td>Código do cosseguro (fixo: <strong>05908</strong>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_EMIS</code></td>
+                    <td>Data</td>
+                    <td>8</td>
+                    <td>Data de emissão (formato: YYYYMMDD)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_INI_VIG</code></td>
+                    <td>Data</td>
+                    <td>8</td>
+                    <td>Data início vigência</td>
+                </tr>
+                <tr>
+                    <td><code>DT_FIM_VIG</code></td>
+                    <td>Data</td>
+                    <td>8</td>
+                    <td>Data fim vigência</td>
+                </tr>
+                <tr>
+                    <td><code>PR_COSS_AC</code></td>
+                    <td>Decimal</td>
+                    <td>16,2</td>
+                    <td><strong>Prêmio cosseguro aceito</strong> (campo chave)</td>
+                </tr>
+                <tr>
+                    <td><code>COM_COSS_AC</code></td>
+                    <td>Decimal</td>
+                    <td>16,2</td>
+                    <td>Comissão cosseguro aceito</td>
+                </tr>
+                <tr>
+                    <td><code>PR_EMIT</code></td>
+                    <td>Decimal</td>
+                    <td>16,2</td>
+                    <td>Prêmio emitido</td>
+                </tr>
+                <tr>
+                    <td><code>AD_FRAC</code></td>
+                    <td>Decimal</td>
+                    <td>16,2</td>
+                    <td>Adicional de fracionamento</td>
+                </tr>
+                <tr>
+                    <td><code>COFEE</code></td>
+                    <td>Decimal</td>
+                    <td>16,2</td>
+                    <td>COFEE</td>
+                </tr>
+                <tr>
+                    <td><code>PRO_LAB</code></td>
+                    <td>Decimal</td>
+                    <td>16,2</td>
+                    <td>Pro labore</td>
+                </tr>
+                <tr>
+                    <td><code>CD_PRODUTO</code></td>
+                    <td>Texto</td>
+                    <td>10</td>
+                    <td>Código do produto (não utilizado)</td>
+                </tr>
+                <tr>
+                    <td><code>DS_PRODUTO</code></td>
+                    <td>Texto</td>
+                    <td>50</td>
+                    <td>Descrição do produto (não utilizado)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_PROP</code></td>
+                    <td>Texto</td>
+                    <td>20</td>
+                    <td>Número da proposta líder</td>
+                </tr>
+                <tr>
+                    <td><code>DT_PROP</code></td>
+                    <td>Data</td>
+                    <td>8</td>
+                    <td>Data da proposta</td>
+                </tr>
+                <tr>
+                    <td><code>CPF_SEG</code></td>
+                    <td>Texto</td>
+                    <td>11</td>
+                    <td>CPF do segurado (não utilizado)</td>
+                </tr>
+                <tr>
+                    <td><code>PRC_COMISS_COFEE</code></td>
+                    <td>Decimal</td>
+                    <td>5,2</td>
+                    <td>Percentual comissão COFEE (não utilizado)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🔄 Lógica de Negócio</h2>
+
+        <h3>1. Mapeamento de TipoMov</h3>
+        <div class="alert alert-warning">
+            <strong>⚠️ Atenção:</strong> A lógica de campo <code>PR_COSS_AC</code> varia de acordo com o <code>TipoMov</code>.
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>TipoMov</th>
+                    <th>Origem</th>
+                    <th>Campo PR_COSS_AC</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge badge-primary">101</span></td>
+                    <td>PolicyCore</td>
+                    <td><code>PrCossAc</code></td>
+                    <td>Emissão original da apólice</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-warning">102</span></td>
+                    <td>OldPolicy (Gateway)</td>
+                    <td><code>PrCossAc</code></td>
+                    <td>Apólice anterior do endosso</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-danger">105</span></td>
+                    <td>NewPolicy (Gateway)</td>
+                    <td><code>PrCosCed</code> ⚠️</td>
+                    <td>Nova apólice do endosso (cedido)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>2. Processamento de Endorsements</h3>
+        <div class="card">
+            <p><strong>Fluxo:</strong></p>
+            <ol>
+                <li>Busca <code>EndoNo</code> por <code>PolicyNo</code> no <code>IndexService</code></li>
+                <li>Se não encontrar: processa como emissão original (TipoMov 101)</li>
+                <li>Se encontrar: carrega dados históricos via Gateway</li>
+                <li>Processa <code>OldPolicy</code> se <code>BaseDate</code> coincidir (TipoMov 102)</li>
+                <li>Processa <code>NewPolicy</code> se <code>BaseDate</code> coincidir (TipoMov 105)</li>
+            </ol>
+        </div>
+
+        <pre><code class="language-groovy">// 1. Busca EndoNo por PolicyNo
+String endoNo = findEndoNoByPolicyNo(policyNo)
+
+if (endoNo) {
+    // 2. Carrega dados históricos via Gateway
+    Map endorsementData = loadEndorsementByEndoNo(endoNo)
+    
+    // 3. Processa OldPolicy (TipoMov 102)
+    if (endorsementData.OldPolicy && endorsementData.OldPolicy.BaseDate == baseDateIndex) {
+        processPolicy(endorsementData.OldPolicy) // usa PrCossAc
+    }
+    
+    // 4. Processa NewPolicy (TipoMov 105)
+    if (endorsementData.NewPolicy && endorsementData.NewPolicy.BaseDate == baseDateIndex) {
+        processPolicy(endorsementData.NewPolicy) // usa PrCosCed
+    }
+} else {
+    // 5. Sem endorsement: processa como emissão original
+    processPolicy(policyCore) // TipoMov 101, usa PrCossAc
+}</code></pre>
+
+        <h3>3. Agregação de Valores por Ramo</h3>
+        <div class="alert alert-info">
+            <strong>ℹ️ Importante:</strong> O PREMAC gera <strong>uma linha por ramo</strong>, agregando valores de todas as coberturas daquele ramo.
+        </div>
+
+        <pre><code class="language-groovy">// Agrupa por CodRamo
+Map&lt;String, Map&lt;String, BigDecimal&gt;&gt; ramoTotals = [:]
+
+// Para cada Coverage
+coverages.each { cov ->
+    String codRamo = cov.CodRamo
+    
+    // Inicializa se não existir
+    if (!ramoTotals[codRamo]) {
+        ramoTotals[codRamo] = [
+            PrCossAc: 0.00,
+            ComCossAc: 0.00,
+            PrEmit: 0.00,
+            Cofee: 0.00,
+            AdFrac: 0.00,
+            ProLab: 0.00
+        ]
+    }
+    
+    // Soma valores por ramo
+    ramoTotals[codRamo].PrCossAc += (tipoMov == 105) 
+        ? cov.PrCosCed 
+        : cov.PrCossAc
+    
+    ramoTotals[codRamo].ComCossAc += cov.ComisCoss
+    ramoTotals[codRamo].PrEmit += cov.OverrideBeforeVatPremium
+    ramoTotals[codRamo].Cofee += cov.Cofee
+    ramoTotals[codRamo].AdFrac += cov.AdFracCoss
+    ramoTotals[codRamo].ProLab += cov.LaborAmountCoss
+}
+
+// Gera uma linha por ramo
+ramoTotals.each { codRamo, totals ->
+    generateCsvLine(codRamo, totals)
+}</code></pre>
+
+        <h2>🗂️ Fonte de Dados</h2>
+        <div class="card">
+            <h4>Estrutura JSON (PolicyCore):</h4>
+            <pre><code class="language-json">{
+  "PolicyId": 12345,
+  "PolicyNo": "POL-12345",
+  "TipoMov": 101,
+  "IssueDate": "2025-09-01T00:00:00",
+  "EffectiveDate": "2025-09-01T00:00:00",
+  "ExpiryDate": "2026-09-01T00:00:00",
+  "CoInsuranceInfoList": [{
+    "LeaderPolicyNo": "POL123",
+    "LeaderEndorsementNo": "END001",
+    "LeaderProposalNo": "PROP123",
+    "LeaderProposalDate": "2025-08-15T00:00:00"
+  }],
+  "PolicyLobList": [{
+    "PolicyRiskList": [{
+      "PolicyCoverageList": [{
+        "CodRamo": "0553",
+        "PrCossAc": 1500.00,
+        "PrCosCed": 1450.00,
+        "ComisCoss": 150.00,
+        "OverrideBeforeVatPremium": 1500.00,
+        "Cofee": 50.00,
+        "AdFracCoss": 0.00,
+        "LaborAmountCoss": 30.00
+      }]
+    }]
+  }]
+}</code></pre>
+        </div>
+
+        <h2>📤 Saída do Arquivo</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Localização</th>
+            </tr>
+            <tr>
+                <td><strong>CSV de Export</strong></td>
+                <td><code>s3://bucket/export/PREMAC_202509_20260305_143022.csv</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log Detalhado</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/PREMAC/PREMAC_DETAILED_202509_20260305_143022.log</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log de Erros</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/PREMAC/error/LOG_PREMAC_202509_1709653234567.csv</code></td>
+            </tr>
+        </table>
+
+        <h2>🚀 Exemplo de Uso</h2>
+        <pre><code class="language-groovy">// Executar export para setembro/2025
+process("202509")</code></pre>
+
+        <div class="alert alert-success">
+            <strong>✅ Resultado esperado:</strong>
+            <ul>
+                <li>Arquivo CSV gerado em <code>export/</code></li>
+                <li>Log detalhado em <code>logs/2026-03-05/PREMAC/</code></li>
+                <li>Uma linha por ramo por apólice/endorsement</li>
+            </ul>
+        </div>
+
+        <h2>🔍 Troubleshooting</h2>
+        <div class="card">
+            <h4>Erro: "CoInsuranceInfoList vazio"</h4>
+            <p><strong>Causa:</strong> Apólice sem informação de cosseguro</p>
+            <p><strong>Solução:</strong> Verificar se a apólice tem <code>CodCoss=05908</code></p>
+
+            <h4>Erro: "Gateway não retornou dados"</h4>
+            <p><strong>Causa:</strong> Endorsement não encontrado ou erro no Gateway</p>
+            <p><strong>Solução:</strong> Verificar se <code>EndoNo</code> está correto no <code>IndexService</code></p>
+
+            <h4>Erro: "PolicyId ausente"</h4>
+            <p><strong>Causa:</strong> Documento do Index sem <code>entity_id</code> ou <code>PolicyId</code></p>
+            <p><strong>Solução:</strong> Verificar estrutura do documento retornado pelo Index</p>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 BMG Seguros - Sistema de Exportação de Cosseguro</p>
+            <p>Última atualização: 05/03/2026 | Versão: 1.0.0</p>
+        </footer>
+    </div>
+
+      <title>PREMRECAC - Prêmio Recebível Aceito de Cosseguro</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
     <style>
         /* [Mesmo CSS do premac.html] */
@@ -50,12 +520,11 @@
         </div>
     </header>
 
-    
+
 
     <div class="container">
         <div class="breadcrumb">
-            <a href="../../index.html">Home</a> / 
-            <a href="index.html">Retornos</a> / 
+
             <span>PREMRECAC</span>
         </div>
 
@@ -271,15 +740,7 @@ installments.each { inst ->
             </tbody>
         </table>
 
-        <h2>📊 Diferenças vs PREMAC</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Aspecto</th>
-                    <th>PREMAC</th>
-                    <th>PREMRECAC</th>
-                </tr>
-            </thead>
+      
             <tbody>
                 <tr>
                     <td><strong>Granularidade</strong></td>
@@ -366,10 +827,1577 @@ process("202509")</code></pre>
             <p>&copy; 2026 BMG Seguros - Sistema de Exportação de Cosseguro</p>
             <p>Última atualização: 05/03/2026 | Versão: 1.0.0</p>
         </footer>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PREMRECEBC - Prêmio Recebido de Cosseguro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; background: white; min-height: 100vh; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px 0; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header .subtitle { font-size: 1.2em; opacity: 0.9; }
+        nav { background: #2d3748; padding: 15px 0; margin-bottom: 30px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        nav a { color: white; text-decoration: none; padding: 8px 16px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(255,255,255,0.1); }
+        nav a.active { background: #667eea; }
+        h2 { color: #667eea; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        h3 { color: #764ba2; margin: 25px 0 12px 0; }
+        h4 { color: #4a5568; margin: 20px 0 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th { background: #667eea; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
+        tr:hover { background: #f7fafc; }
+        .code-block { background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; font-family: 'Courier New', monospace; }
+        .alert { padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid; }
+        .alert-info { background: #ebf8ff; border-color: #3182ce; color: #2c5282; }
+        .alert-warning { background: #fffaf0; border-color: #dd6b20; color: #7c2d12; }
+        .alert-success { background: #f0fff4; border-color: #38a169; color: #22543d; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; }
+        .badge-primary { background: #667eea; color: white; }
+        .badge-success { background: #48bb78; color: white; }
+        .badge-warning { background: #ed8936; color: white; }
+        .card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        footer { margin-top: 50px; padding: 20px 0; border-top: 2px solid #e2e8f0; text-align: center; color: #718096; }
+        .breadcrumb { margin-bottom: 20px; color: #718096; }
+        .breadcrumb a { color: #667eea; text-decoration: none; }
+        code { background: #edf2f7; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        pre code { background: none; padding: 0; }
+        .highlight { background: #fef5e7; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>💰 PREMRECEBC</h1>
+            <p class="subtitle">Prêmio Recebido de Cosseguro</p>
+        </div>
+    </header>
+
+
+
+    <div class="container">
+        <div class="breadcrumb">
+
+            <span>PREMRECEBC</span>
+        </div>
+
+        <h1>💰 PREMRECEBC - Prêmio Recebido de Cosseguro</h1>
+
+        <div class="alert alert-info">
+            <strong>ℹ️ Descrição:</strong> Valores efetivamente recebidos (baixa bancária), representando o recebimento real dos prêmios de cosseguro após compensação bancária.
+        </div>
+
+        <h2>🔧 Especificações Técnicas</h2>
+        <table>
+            <tr>
+                <th>Propriedade</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td><strong>Módulo</strong></td>
+                <td>Policy (PolicyCore)</td>
+            </tr>
+            <tr>
+                <td><strong>Filtros</strong></td>
+                <td><code>BaseDate</code>, <code>CodCoss=05908</code></td>
+            </tr>
+            <tr>
+                <td><strong>Total de Campos</strong></td>
+                <td>18 campos</td>
+            </tr>
+            <tr>
+                <td><strong>Agregação</strong></td>
+                <td>Por Ramo + Installment</td>
+            </tr>
+            <tr>
+                <td><strong>Delimitador</strong></td>
+                <td>Pipe (<code>|</code>)</td>
+            </tr>
+        </table>
+
+        <h2>📋 Estrutura do Arquivo CSV</h2>
+        <div class="code-block">
+SEQUENCIA|COD_CIA|DT_BASE|TIPO_MOV|COD_RAMO|NUM_APOL|NUM_END|NUM_PROP|DT_PROP|DT_INI_VIG|DT_FIM_VIG|VAL_DOC|VAL_DESC|VAL_MUL|VAL_COB|PRO_LAB|COM_COS_AC|COFEE
+0000000001|03417|202509|101|0553|POL123|00000000000000000000|PROP123|20250815|20250901|20260901|125.00|0.00|0.00|125.00|2.50|12.50|4.17
+        </div>
+
+        <h2>📝 Descrição dos Campos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>SEQUENCIA</code></td>
+                    <td>Numérico</td>
+                    <td>Número sequencial do registro</td>
+                </tr>
+                <tr>
+                    <td><code>COD_CIA</code></td>
+                    <td>Texto</td>
+                    <td>Código da companhia (03417)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_BASE</code></td>
+                    <td>Texto</td>
+                    <td>Data base (YYYYMM)</td>
+                </tr>
+                <tr>
+                    <td><code>TIPO_MOV</code></td>
+                    <td>Numérico</td>
+                    <td>Tipo de movimento (todos os tipos)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_RAMO</code></td>
+                    <td>Texto</td>
+                    <td>Código do ramo SUSEP</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_APOL</code></td>
+                    <td>Texto</td>
+                    <td>Número da apólice líder</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_END</code></td>
+                    <td>Texto</td>
+                    <td>Número do endosso líder</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_PROP</code></td>
+                    <td>Texto</td>
+                    <td>Número da proposta líder</td>
+                </tr>
+                <tr>
+                    <td><code>DT_PROP</code></td>
+                    <td>Data</td>
+                    <td>Data da proposta</td>
+                </tr>
+                <tr>
+                    <td><code>DT_INI_VIG</code></td>
+                    <td>Data</td>
+                    <td>Data início vigência</td>
+                </tr>
+                <tr>
+                    <td><code>DT_FIM_VIG</code></td>
+                    <td>Data</td>
+                    <td>Data fim vigência</td>
+                </tr>
+                <tr>
+                    <td><code>VAL_DOC</code></td>
+                    <td>Decimal</td>
+                    <td><span class="highlight">Valor do documento</span> (do Installment)</td>
+                </tr>
+                <tr>
+                    <td><code>VAL_DESC</code></td>
+                    <td>Decimal</td>
+                    <td><span class="highlight">Valor do desconto</span> (do Installment)</td>
+                </tr>
+                <tr>
+                    <td><code>VAL_MUL</code></td>
+                    <td>Decimal</td>
+                    <td><span class="highlight">Valor da multa</span> (do Installment)</td>
+                </tr>
+                <tr>
+                    <td><code>VAL_COB</code></td>
+                    <td>Decimal</td>
+                    <td><span class="highlight">Valor cobrado</span> (do Installment)</td>
+                </tr>
+                <tr>
+                    <td><code>PRO_LAB</code></td>
+                    <td>Decimal</td>
+                    <td>Pro labore (agregado por Ramo)</td>
+                </tr>
+                <tr>
+                    <td><code>COM_COS_AC</code></td>
+                    <td>Decimal</td>
+                    <td>Comissão cosseguro aceito (agregado)</td>
+                </tr>
+                <tr>
+                    <td><code>COFEE</code></td>
+                    <td>Decimal</td>
+                    <td>COFEE (agregado por Ramo)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🔄 Lógica de Negócio - Fonte de Dados Dual</h2>
+
+        <div class="alert alert-warning">
+            <strong>⚠️ Importante:</strong> PREMRECEBC combina dados de <strong>duas fontes</strong>:
+            <ul>
+                <li><strong>Installment:</strong> Valores de pagamento (VAL_DOC, VAL_DESC, VAL_MUL, VAL_COB)</li>
+                <li><strong>Coverage (agregado):</strong> Comissões e taxas (PRO_LAB, COM_COS_AC, COFEE)</li>
+            </ul>
+        </div>
+
+        <pre><code class="language-groovy">// Valores do Installment (iguais para todos os ramos)
+BigDecimal valDoc = installment.ValDocCoss
+BigDecimal valDesc = installment.ValDescCoss
+BigDecimal valMul = installment.ValMulCoss
+BigDecimal valCob = installment.ValCobCoss
+
+// Valores agregados por Ramo (de Coverage)
+ramoTotals.each { codRamo, totals ->
+    generateLine(
+        // Valores do installment (constantes)
+        valDoc: valDoc,
+        valDesc: valDesc,
+        valMul: valMul,
+        valCob: valCob,
+        
+        // Valores do ramo (agregados)
+        codRamo: codRamo,
+        comCosAc: totals.ComCosAc,
+        cofee: totals.Cofee,
+        proLab: totals.ProLab
+    )
+}</code></pre>
+
+        <h2>📊 Mapeamento de Campos Especiais</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campo CSV</th>
+                    <th>Fonte</th>
+                    <th>Campo Origem</th>
+                    <th>Observação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>VAL_DOC</code></td>
+                    <td><span class="badge badge-warning">InstallmentList</span></td>
+                    <td><code>ValDocCoss</code></td>
+                    <td>Igual para todos os ramos</td>
+                </tr>
+                <tr>
+                    <td><code>VAL_DESC</code></td>
+                    <td><span class="badge badge-warning">InstallmentList</span></td>
+                    <td><code>ValDescCoss</code></td>
+                    <td>Igual para todos os ramos</td>
+                </tr>
+                <tr>
+                    <td><code>VAL_MUL</code></td>
+                    <td><span class="badge badge-warning">InstallmentList</span></td>
+                    <td><code>ValMulCoss</code></td>
+                    <td>Igual para todos os ramos</td>
+                </tr>
+                <tr>
+                    <td><code>VAL_COB</code></td>
+                    <td><span class="badge badge-warning">InstallmentList</span></td>
+                    <td><code>ValCobCoss</code></td>
+                    <td>Igual para todos os ramos</td>
+                </tr>
+                <tr>
+                    <td><code>PRO_LAB</code></td>
+                    <td><span class="badge badge-primary">Coverage</span></td>
+                    <td><code>LaborAmountCoss</code></td>
+                    <td>Agregado por ramo</td>
+                </tr>
+                <tr>
+                    <td><code>COM_COS_AC</code></td>
+                    <td><span class="badge badge-primary">Coverage</span></td>
+                    <td><code>ComisCoss</code></td>
+                    <td>Agregado por ramo</td>
+                </tr>
+                <tr>
+                    <td><code>COFEE</code></td>
+                    <td><span class="badge badge-primary">Coverage</span></td>
+                    <td><code>Cofee</code></td>
+                    <td>Agregado por ramo</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🗂️ Fonte de Dados</h2>
+        <div class="card">
+            <h4>Estrutura JSON (PolicyCore):</h4>
+            <pre><code class="language-json">{
+  "PolicyPaymentInfoList": [{
+    "InstallmentList": [{
+      "InstallmentNo": "1",
+      "ValDocCoss": 125.00,
+      "ValDescCoss": 0.00,
+      "ValMulCoss": 0.00,
+      "ValCobCoss": 125.00
+    }]
+  }],
+  "PolicyLobList": [{
+    "PolicyRiskList": [{
+      "PolicyCoverageList": [{
+        "CodRamo": "0553",
+        "LaborAmountCoss": 2.50,
+        "ComisCoss": 12.50,
+        "Cofee": 4.17
+      }]
+    }]
+  }]
+}</code></pre>
+        </div>
+
+        <h2>📊 Diferenças vs PREMRECAC</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspecto</th>
+                    <th>PREMRECAC</th>
+                    <th>PREMRECEBC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Foco</strong></td>
+                    <td>Prêmio a receber</td>
+                    <td>Prêmio efetivamente recebido</td>
+                </tr>
+                <tr>
+                    <td><strong>Campos Prestação</strong></td>
+                    <td>PRESTACAO, DT_EMIS_PRE, DT_VEN_PRE</td>
+                    <td>VAL_DOC, VAL_DESC, VAL_MUL, VAL_COB</td>
+                </tr>
+                <tr>
+                    <td><strong>Total de Campos</strong></td>
+                    <td>20</td>
+                    <td>18</td>
+                </tr>
+                <tr>
+                    <td><strong>Momento</strong></td>
+                    <td>Emissão (cronograma)</td>
+                    <td>Baixa bancária (efetivo)</td>
+                </tr>
+                <tr>
+                    <td><strong>TipoMov</strong></td>
+                    <td>101, 102, 105</td>
+                    <td>Todos os tipos</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>📤 Saída do Arquivo</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Localização</th>
+            </tr>
+            <tr>
+                <td><strong>CSV de Export</strong></td>
+                <td><code>s3://bucket/export/PREMRECEBC_202509_20260305_143022.csv</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log Detalhado</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/PREMRECEBC/PREMRECEBC_DETAILED_202509_20260305_143022.log</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log de Erros</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/PREMRECEBC/error/LOG_PREMRECEBC_202509_*.csv</code></td>
+            </tr>
+        </table>
+
+        <h2>🚀 Exemplo de Uso</h2>
+        <pre><code class="language-groovy">// Executar export para setembro/2025
+process("202509")</code></pre>
+
+        <div class="alert alert-success">
+            <strong>✅ Resultado esperado:</strong>
+            <ul>
+                <li>Apólice com 3 ramos e 4 installments → <strong>12 linhas</strong> (3 × 4)</li>
+                <li>Valores VAL_DOC, VAL_DESC, VAL_MUL, VAL_COB são iguais para todos os ramos</li>
+                <li>Valores PRO_LAB, COM_COS_AC, COFEE variam por ramo</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 BMG Seguros - Sistema de Exportação de Cosseguro</p>
+            <p>Última atualização: 05/03/2026 | Versão: 1.0.0</p>
+        </footer>
+    </div>
+    <title>SINAVAC - Sinistro Aviso Aceito de Cosseguro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; background: white; min-height: 100vh; }
+        header { background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 30px 0; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header .subtitle { font-size: 1.2em; opacity: 0.9; }
+        nav { background: #2d3748; padding: 15px 0; margin-bottom: 30px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        nav a { color: white; text-decoration: none; padding: 8px 16px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(255,255,255,0.1); }
+        nav a.active { background: #e74c3c; }
+        h2 { color: #e74c3c; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #e74c3c; }
+        h3 { color: #c0392b; margin: 25px 0 12px 0; }
+        h4 { color: #4a5568; margin: 20px 0 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th { background: #e74c3c; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
+        tr:hover { background: #f7fafc; }
+        .code-block { background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 0.9em; }
+        .alert { padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid; }
+        .alert-info { background: #ebf8ff; border-color: #3182ce; color: #2c5282; }
+        .alert-warning { background: #fffaf0; border-color: #dd6b20; color: #7c2d12; }
+        .alert-success { background: #f0fff4; border-color: #38a169; color: #22543d; }
+        .alert-danger { background: #fff5f5; border-color: #e53e3e; color: #742a2a; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; }
+        .badge-primary { background: #667eea; color: white; }
+        .badge-success { background: #48bb78; color: white; }
+        .badge-warning { background: #ed8936; color: white; }
+        .badge-danger { background: #f56565; color: white; }
+        .card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        footer { margin-top: 50px; padding: 20px 0; border-top: 2px solid #e2e8f0; text-align: center; color: #718096; }
+        .breadcrumb { margin-bottom: 20px; color: #718096; }
+        .breadcrumb a { color: #667eea; text-decoration: none; }
+        code { background: #edf2f7; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        pre code { background: none; padding: 0; }
+        .highlight { background: #fef5e7; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
+        .complexity-high { background: #fee; padding: 10px; border-left: 4px solid #e53e3e; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🚨 SINAVAC</h1>
+            <p class="subtitle">Sinistro Aviso Aceito de Cosseguro</p>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="breadcrumb">
+
+            <span>SINAVAC</span>
+        </div>
+
+        <h1>🚨 SINAVAC - Sinistro Aviso Aceito de Cosseguro</h1>
+
+        <div class="alert alert-info">
+            <strong>ℹ️ Descrição:</strong> Avisos de sinistro com histórico completo de transações, utilizando estratégia de busca dual (ClaimCase + ARAP) para capturar todos os movimentos.
+        </div>
+
+        <div class="complexity-high">
+            <strong>⚠️ COMPLEXIDADE ALTA:</strong> Este é o arquivo mais complexo do sistema, utilizando <strong>dois módulos</strong> (ClaimCase + BCP ARAP) com paginação e histórico completo.
+        </div>
+
+        <h2>🔧 Especificações Técnicas</h2>
+        <table>
+            <tr>
+                <th>Propriedade</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td><strong>Módulo Primário</strong></td>
+                <td>ClaimCase (Index)</td>
+            </tr>
+            <tr>
+                <td><strong>Módulo Secundário</strong></td>
+                <td>BCP ARAP (Transaction)</td>
+            </tr>
+            <tr>
+                <td><strong>Filtros</strong></td>
+                <td><code>BaseDate</code>, <code>owned_org_code=bmg</code></td>
+            </tr>
+            <tr>
+                <td><strong>Total de Campos</strong></td>
+                <td>16 campos</td>
+            </tr>
+            <tr>
+                <td><strong>Complexidade</strong></td>
+                <td><span class="badge badge-danger">Alta</span></td>
+            </tr>
+        </table>
+
+        <h2>📋 Estrutura do Arquivo CSV</h2>
+        <div class="code-block">
+SEQUENCIA|COD_CIA|DT_BASE|TIPO_MOV|COD_RAMO|COD_COSS|NUM_SIN|NUM_APOL|NUM_END|DT_REG|DT_AVISO|DT_OCOR|VR_MOV|DT_SIN|TP_SIN|UF_RISCO
+0000000001|03417|202509|01|0553|05908|SIN123|POL123|END001|20250910|20250905|20250901|5000.00|20250901|01|SP
+        </div>
+
+        <h2>📝 Descrição dos Campos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Fonte</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>SEQUENCIA</code></td>
+                    <td>-</td>
+                    <td>Número sequencial do registro</td>
+                </tr>
+                <tr>
+                    <td><code>COD_CIA</code></td>
+                    <td>-</td>
+                    <td>Código da companhia (03417)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_BASE</code></td>
+                    <td>-</td>
+                    <td>Data base (YYYYMM)</td>
+                </tr>
+                <tr>
+                    <td><code>TIPO_MOV</code></td>
+                    <td><span class="badge badge-danger">ARAP</span></td>
+                    <td>Tipo de movimento SUSEP (convertido)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_RAMO</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>Código do ramo (<code>ExtBranchCode</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_COSS</code></td>
+                    <td>-</td>
+                    <td>Código do cosseguro (05908)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_SIN</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>Número do sinistro (<code>ExtClaimNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_APOL</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>Número da apólice (<code>ExtPolicyNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_END</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>Número do endosso (<code>ExtEndoNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_REG</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>Data de registro (<code>ExtRegistrationDate</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_AVISO</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>Data do aviso (<code>NoticeTime</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_OCOR</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>Data da ocorrência (<code>AccidentTime</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>VR_MOV</code></td>
+                    <td><span class="badge badge-danger">ARAP</span></td>
+                    <td>Valor do movimento (<code>ExtCededCoinsuranceAmount</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_SIN</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>Data do sinistro (mesmo que DT_OCOR)</td>
+                </tr>
+                <tr>
+                    <td><code>TP_SIN</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>Tipo do sinistro (<code>ExtClaimType</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>UF_RISCO</code></td>
+                    <td><span class="badge badge-primary">ClaimCase</span></td>
+                    <td>UF do risco (<code>RiskState</code>)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🔄 Lógica de Negócio - Estratégia Dual Module</h2>
+
+        <div class="alert alert-warning">
+            <strong>⚠️ Estratégia:</strong> SINAVAC combina dados de <strong>ClaimCase</strong> (dados base do sinistro) com <strong>ARAP</strong> (histórico de transações financeiras).
+        </div>
+
+        <h3>Fluxo de Processamento</h3>
+        <div class="card">
+            <ol>
+                <li><strong>Query ClaimCase Index</strong> por BaseDate</li>
+                <li><strong>Load ClaimCase Data</strong> completo</li>
+                <li><strong>Extract ClaimNo</strong> do ClaimCase</li>
+                <li><strong>Query ARAP</strong> por ClaimNo (com paginação)</li>
+                <li>Se ARAP encontrado: <strong>Para cada Transaction</strong>, gera linha combinando ClaimCase + ARAP</li>
+                <li>Se ARAP não encontrado: Gera linha com dados do ClaimCase apenas (fallback)</li>
+            </ol>
+        </div>
+
+        <h3>Código de Implementação</h3>
+        <pre><code class="language-groovy">// 1. Busca ClaimCase
+List&lt;Map&gt; claimDocs = fetchClaimsCaseBatch(baseDate, cursorId)
+
+claimDocs.each { claimDoc ->
+    String claimNo = claimDoc.ExtClaimNo
+    
+    // 2. Busca TODOS os ARAP para este ClaimNo
+    List&lt;Map&gt; arapHistorico = fetchAllArapDataByClaimNo(claimNo)
+    
+    if (arapHistorico.isEmpty()) {
+        // Fallback: usa dados do ClaimCase
+        detailedLogger.log("  Sem ARAP - usando dados do ClaimCase")
+        generateLine(
+            claimCase: claimDoc,
+            arap: null
+        )
+    } else {
+        // Para cada ARAP Transaction, gera uma linha
+        detailedLogger.log("  ${arapHistorico.size()} transacoes ARAP encontradas")
+        arapHistorico.each { arapData ->
+            generateLine(
+                claimCase: claimDoc,  // Campos base
+                arap: arapData         // TipoMov e VrMov
+            )
+        }
+    }
+}</code></pre>
+
+        <h3>Paginação do ARAP</h3>
+        <pre><code class="language-groovy">List fetchAllArapDataByClaimNo(String claimNo) {
+    List allArapData = []
+    int pageNo = 1
+    boolean hasMorePages = true
+    
+    while (hasMorePages) {
+        // Query ARAP com BizTransType=CLAIM
+        PagedResultArap response = bcpSdkClient.arapApi()
+            .newAdvanceQueryArapRequestBuilder()
+            .searchConditionRequest([
+                conditions: [
+                    ClaimNo: claimNo,
+                    BizTransType: "CLAIM"
+                ],
+                pageNo: pageNo,
+                pageSize: 100
+            ])
+            .doRequest()
+            .getBody()
+        
+        if (response.totalElements > 0) {
+            response.elementsInCurrentPage.each { arap ->
+                // Extrai Transaction de cada ARAP
+                Map transaction = arap.Transaction
+                allArapData.add(transaction)
+            }
+            
+            hasMorePages = (response.elementsInCurrentPage.size() == 100)
+            pageNo++
+        } else {
+            hasMorePages = false
+        }
+    }
+    
+    return allArapData
+}</code></pre>
+
+        <h2>🔢 Conversão de TipoMov (Platform → SUSEP)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform (ARAP)</th>
+                    <th>SUSEP</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge badge-primary">201</span></td>
+                    <td><span class="badge badge-success">01</span></td>
+                    <td>Aviso inicial</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">204</span></td>
+                    <td><span class="badge badge-success">04</span></td>
+                    <td>Complementação de aviso</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">211</span></td>
+                    <td><span class="badge badge-success">11</span></td>
+                    <td>Recuperação</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">214</span></td>
+                    <td><span class="badge badge-success">14</span></td>
+                    <td>Recuperação complementar</td>
+                </tr>
+                <tr>
+                    <td>Outros</td>
+                    <td><span class="badge badge-success">01</span></td>
+                    <td>Default (fallback)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pre><code class="language-groovy">String resolveSusepMovType(String platformMovType) {
+    switch (platformMovType) {
+        case "201": return "01"
+        case "204": return "04"
+        case "211": return "11"
+        case "214": return "14"
+        default: return "01"
+    }
+}</code></pre>
+
+        <h2>🗂️ Fonte de Dados</h2>
+        <div class="card">
+            <h4>Estrutura JSON (ClaimCase):</h4>
+            <pre><code class="language-json">{
+  "ClaimId": 67890,
+  "ExtClaimNo": "SIN123",
+  "ExtPolicyNo": "POL123",
+  "ExtEndoNo": "END001",
+  "ExtRegistrationDate": "2025-09-10",
+  "NoticeTime": "2025-09-05T14:30:00",
+  "AccidentTime": "2025-09-01T10:00:00",
+  "ExtBranchCode": "0553",
+  "ExtClaimType": "01",
+  "RiskState": "SP"
+}</code></pre>
+
+            <h4>Estrutura JSON (ARAP Transaction):</h4>
+            <pre><code class="language-json">{
+  "Transaction": {
+    "ExtMovementType": "201",
+    "ExtCededCoinsuranceAmount": 5000.00,
+    "TransactionDate": "2025-09-05"
+  }
+}</code></pre>
+        </div>
+
+        <h2>📊 Exemplo de Resultado</h2>
+        <div class="alert alert-success">
+            <strong>✅ Cenário:</strong> Um sinistro com 3 transações ARAP
+            <ul>
+                <li><strong>Input:</strong> 1 ClaimCase com ClaimNo = SIN123</li>
+                <li><strong>ARAP Query:</strong> Retorna 3 transactions (201, 204, 211)</li>
+                <li><strong>Output:</strong> 3 linhas CSV (uma para cada transaction)</li>
+            </ul>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Linha</th>
+                    <th>NUM_SIN</th>
+                    <th>TIPO_MOV</th>
+                    <th>VR_MOV</th>
+                    <th>Origem</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>SIN123</td>
+                    <td>01</td>
+                    <td>5000.00</td>
+                    <td>ClaimCase + ARAP Transaction 1 (201)</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>SIN123</td>
+                    <td>04</td>
+                    <td>2000.00</td>
+                    <td>ClaimCase + ARAP Transaction 2 (204)</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>SIN123</td>
+                    <td>11</td>
+                    <td>-1000.00</td>
+                    <td>ClaimCase + ARAP Transaction 3 (211)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>📤 Saída do Arquivo</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Localização</th>
+            </tr>
+            <tr>
+                <td><strong>CSV de Export</strong></td>
+                <td><code>s3://bucket/export/SINAVAC_202509_20260305_143022.csv</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log Detalhado</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/SINAVAC/SINAVAC_DETAILED_202509_20260305_143022.log</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log de Erros</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/SINAVAC/error/LOG_SINAVAC_202509_*.csv</code></td>
+            </tr>
+        </table>
+
+        <h2>⚠️ Considerações de Performance</h2>
+        <div class="alert alert-danger">
+            <strong>⚠️ Performance:</strong>
+            <ul>
+                <li>Processamento mais lento devido à busca dual de módulos</li>
+                <li>Paginação do ARAP pode gerar múltiplas chamadas API</li>
+                <li>~20 registros/segundo (vs ~50 em arquivos simples)</li>
+                <li>Tempo médio para 10k sinistros: ~8 minutos</li>
+            </ul>
+        </div>
+
+        <h2>🚀 Exemplo de Uso</h2>
+        <pre><code class="language-groovy">// Executar export para setembro/2025
+process("202509")</code></pre>
+
+        <footer>
+            <p>&copy; 2026 BMG Seguros - Sistema de Exportação de Cosseguro</p>
+            <p>Última atualização: 05/03/2026 | Versão: 1.0.0</p>
+        </footer>
+    </div>
+    <title>SINPAGAC - Sinistro Pagamento Aceito de Cosseguro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; background: white; min-height: 100vh; }
+        header { background: linear-gradient(135deg, #27ae60 0%, #229954 100%); color: white; padding: 30px 0; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header .subtitle { font-size: 1.2em; opacity: 0.9; }
+        nav { background: #2d3748; padding: 15px 0; margin-bottom: 30px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        nav a { color: white; text-decoration: none; padding: 8px 16px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(255,255,255,0.1); }
+        nav a.active { background: #27ae60; }
+        h2 { color: #27ae60; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #27ae60; }
+        h3 { color: #229954; margin: 25px 0 12px 0; }
+        h4 { color: #4a5568; margin: 20px 0 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th { background: #27ae60; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
+        tr:hover { background: #f7fafc; }
+        .code-block { background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; font-family: 'Courier New', monospace; }
+        .alert { padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid; }
+        .alert-info { background: #ebf8ff; border-color: #3182ce; color: #2c5282; }
+        .alert-warning { background: #fffaf0; border-color: #dd6b20; color: #7c2d12; }
+        .alert-success { background: #f0fff4; border-color: #38a169; color: #22543d; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; }
+        .badge-primary { background: #667eea; color: white; }
+        .badge-success { background: #48bb78; color: white; }
+        .badge-warning { background: #ed8936; color: white; }
+        .card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        footer { margin-top: 50px; padding: 20px 0; border-top: 2px solid #e2e8f0; text-align: center; color: #718096; }
+        .breadcrumb { margin-bottom: 20px; color: #718096; }
+        .breadcrumb a { color: #667eea; text-decoration: none; }
+        code { background: #edf2f7; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        pre code { background: none; padding: 0; }
+        .highlight { background: #d4edda; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
+        .simplicity { background: #d4edda; padding: 10px; border-left: 4px solid #28a745; border-radius: 5px; margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>💵 SINPAGAC</h1>
+            <p class="subtitle">Sinistro Pagamento Aceito de Cosseguro</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb">
+
+            <span>SINPAGAC</span>
+        </div>
+
+        <h1>💵 SINPAGAC - Sinistro Pagamento Aceito de Cosseguro</h1>
+
+        <div class="alert alert-info">
+            <strong>ℹ️ Descrição:</strong> Pagamentos efetivos de sinistros (baixa financeira), representando valores já pagos aos segurados no cosseguro aceito.
+        </div>
+
+        <div class="simplicity">
+            <strong>✅ COMPLEXIDADE BAIXA:</strong> Diferente do SINAVAC, este arquivo usa <strong>apenas ClaimCase</strong> (sem buscar ARAP), tornando o processamento muito mais rápido e simples.
+        </div>
+
+        <h2>🔧 Especificações Técnicas</h2>
+        <table>
+            <tr>
+                <th>Propriedade</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td><strong>Módulo</strong></td>
+                <td>ClaimCase (Index) apenas</td>
+            </tr>
+            <tr>
+                <td><strong>Filtros</strong></td>
+                <td><code>BaseDate</code>, <code>owned_org_code=bmg</code></td>
+            </tr>
+            <tr>
+                <td><strong>Sem filtro</strong></td>
+                <td>CaseStatus (processa todos os status)</td>
+            </tr>
+            <tr>
+                <td><strong>Total de Campos</strong></td>
+                <td>14 campos</td>
+            </tr>
+            <tr>
+                <td><strong>Complexidade</strong></td>
+                <td><span class="badge badge-success">Baixa</span></td>
+            </tr>
+        </table>
+
+        <h2>📋 Estrutura do Arquivo CSV</h2>
+        <div class="code-block">
+SEQUENCIA|COD_CIA|DT_BASE|TIPO_MOV|COD_RAMO|COD_COSS|NUM_SIN|NUM_APOL|NUM_END|DT_REG|DT_AVISO|DT_OCOR|VR_MOV|TP_SIN
+0000000001|03417|202509|07|0553|05908|SIN123|POL123|END001|20250910|20250905|20250901|5000.00|01
+        </div>
+
+        <h2>📝 Descrição dos Campos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>SEQUENCIA</code></td>
+                    <td>Numérico</td>
+                    <td>Número sequencial do registro</td>
+                </tr>
+                <tr>
+                    <td><code>COD_CIA</code></td>
+                    <td>Texto</td>
+                    <td>Código da companhia (03417)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_BASE</code></td>
+                    <td>Texto</td>
+                    <td>Data base (YYYYMM)</td>
+                </tr>
+                <tr>
+                    <td><code>TIPO_MOV</code></td>
+                    <td>Numérico</td>
+                    <td>Tipo de movimento (07, 08)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_RAMO</code></td>
+                    <td>Texto</td>
+                    <td>Código do ramo (<code>ExtBranchCode</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_COSS</code></td>
+                    <td>Texto</td>
+                    <td>Código do cosseguro (05908)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_SIN</code></td>
+                    <td>Texto</td>
+                    <td>Número do sinistro (<code>ExtClaimNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_APOL</code></td>
+                    <td>Texto</td>
+                    <td>Número da apólice (<code>ExtPolicyNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_END</code></td>
+                    <td>Texto</td>
+                    <td>Número do endosso (<code>ExtEndoNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_REG</code></td>
+                    <td>Data</td>
+                    <td>Data de registro (<code>ExtRegistrationDate</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_AVISO</code></td>
+                    <td>Data</td>
+                    <td>Data do aviso (<code>NoticeTime</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_OCOR</code></td>
+                    <td>Data</td>
+                    <td>Data da ocorrência (<code>AccidentTime</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>VR_MOV</code></td>
+                    <td>Decimal</td>
+                    <td><span class="highlight">Valor pago</span> (<code>ExtCededCoinsuranceAmount</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>TP_SIN</code></td>
+                    <td>Texto</td>
+                    <td>Tipo do sinistro (<code>ExtClaimType</code>)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🔄 Lógica de Negócio - Single Module</h2>
+
+        <div class="alert alert-success">
+            <strong>✅ Simplicidade:</strong> SINPAGAC usa <strong>apenas ClaimCase</strong>, sem necessidade de buscar ARAP. Todos os dados vêm de um único módulo.
+        </div>
+
+        <h3>Implementação Simplificada</h3>
+        <pre><code class="language-groovy">// Busca diretamente do ClaimCase (sem buscar ARAP)
+List&lt;Map&gt; claimDocs = fetchClaimsBatch(baseDate, cursorId)
+
+claimDocs.each { claimDoc ->
+    // Usa ExtMovementType e ExtCededCoinsuranceAmount do ClaimCase
+    generateLine(
+        tipoMov: resolveSusepMovType(claimDoc.ExtMovementType),
+        vrMov: claimDoc.ExtCededCoinsuranceAmount,
+        numSin: claimDoc.ExtClaimNo,
+        numApol: claimDoc.ExtPolicyNo,
+        // ... outros campos do ClaimCase
+    )
+}</code></pre>
+
+        <h2>🔢 Conversão de TipoMov (Foco em Pagamentos)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>SUSEP</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge badge-primary">207</span></td>
+                    <td><span class="badge badge-success">07</span></td>
+                    <td>Pagamento principal</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">208</span></td>
+                    <td><span class="badge badge-success">08</span></td>
+                    <td>Pagamento complementar</td>
+                </tr>
+                <tr>
+                    <td>Outros</td>
+                    <td><span class="badge badge-success">01</span></td>
+                    <td>Default (fallback)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pre><code class="language-groovy">String resolveSusepMovType(String platformMovType) {
+    switch (platformMovType) {
+        case "207": return "07"
+        case "208": return "08"
+        default: return "01"
+    }
+}</code></pre>
+
+        <h2>📊 Diferenças vs SINAVAC</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Aspecto</th>
+                    <th>SINAVAC</th>
+                    <th>SINPAGAC</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Módulos</strong></td>
+                    <td>ClaimCase + ARAP</td>
+                    <td><span class="highlight">ClaimCase apenas</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Foco</strong></td>
+                    <td>Avisos (histórico completo)</td>
+                    <td>Pagamentos efetivos</td>
+                </tr>
+                <tr>
+                    <td><strong>TipoMov</strong></td>
+                    <td>201→01, 204→04, 211→11, 214→14</td>
+                    <td>207→07, 208→08</td>
+                </tr>
+                <tr>
+                    <td><strong>Linhas por Sinistro</strong></td>
+                    <td>N (por ARAP Transaction)</td>
+                    <td>1 (por ClaimCase)</td>
+                </tr>
+                <tr>
+                    <td><strong>Complexidade</strong></td>
+                    <td><span class="badge badge-warning">Alta</span></td>
+                    <td><span class="badge badge-success">Baixa</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Performance</strong></td>
+                    <td>~20 registros/segundo</td>
+                    <td>~50 registros/segundo</td>
+                </tr>
+                <tr>
+                    <td><strong>Total de Campos</strong></td>
+                    <td>16</td>
+                    <td>14</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🗂️ Fonte de Dados</h2>
+        <div class="card">
+            <h4>Estrutura JSON (ClaimCase):</h4>
+            <pre><code class="language-json">{
+  "ClaimId": 67890,
+  "ExtClaimNo": "SIN123",
+  "ExtPolicyNo": "POL123",
+  "ExtEndoNo": "END001",
+  "ExtRegistrationDate": "2025-09-10",
+  "NoticeTime": "2025-09-05T14:30:00",
+  "AccidentTime": "2025-09-01T10:00:00",
+  "ExtBranchCode": "0553",
+  "ExtClaimType": "01",
+  "ExtMovementType": "207",
+  "ExtCededCoinsuranceAmount": 5000.00
+}</code></pre>
+        </div>
+
+        <h2>📤 Saída do Arquivo</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Localização</th>
+            </tr>
+            <tr>
+                <td><strong>CSV de Export</strong></td>
+                <td><code>s3://bucket/export/SINPAGAC_202509_20260305_143022.csv</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log Detalhado</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/SINPAGAC/SINPAGAC_DETAILED_202509_20260305_143022.log</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log de Erros</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/SINPAGAC/error/LOG_SINPAGAC_202509_*.csv</code></td>
+            </tr>
+        </table>
+
+        <h2>🚀 Exemplo de Uso</h2>
+        <pre><code class="language-groovy">// Executar export para setembro/2025
+process("202509")</code></pre>
+
+        <div class="alert alert-success">
+            <strong>✅ Resultado esperado:</strong>
+            <ul>
+                <li>10 sinistros pagos → <strong>10 linhas</strong> (1 linha por sinistro)</li>
+                <li>Processamento rápido (~50 registros/segundo)</li>
+                <li>Sem necessidade de buscar ARAP</li>
+            </ul>
+        </div>
+
+        <h2>⚡ Vantagens de Performance</h2>
+        <div class="card">
+            <ul>
+                <li>✅ <strong>Single module:</strong> Apenas ClaimCase (sem ARAP)</li>
+                <li>✅ <strong>Sem paginação:</strong> Não precisa paginar ARAP</li>
+                <li>✅ <strong>1 linha/sinistro:</strong> Resultado previsível</li>
+                <li>✅ <strong>Processamento rápido:</strong> 2.5x mais rápido que SINAVAC</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 BMG Seguros - Sistema de Exportação de Cosseguro</p>
+            <p>Última atualização: 05/03/2026 | Versão: 1.0.0</p>
+        </footer>
+    </div>
+    <title>SINPENDAC - Sinistro Pendente Aceito de Cosseguro</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; background: white; min-height: 100vh; }
+        header { background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%); color: white; padding: 30px 0; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        header h1 { font-size: 2.5em; margin-bottom: 10px; }
+        header .subtitle { font-size: 1.2em; opacity: 0.9; }
+        nav { background: #2d3748; padding: 15px 0; margin-bottom: 30px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        nav ul { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+        nav a { color: white; text-decoration: none; padding: 8px 16px; border-radius: 5px; transition: background 0.3s; }
+        nav a:hover { background: rgba(255,255,255,0.1); }
+        nav a.active { background: #f39c12; }
+        h2 { color: #f39c12; margin: 30px 0 15px 0; padding-bottom: 10px; border-bottom: 2px solid #f39c12; }
+        h3 { color: #e67e22; margin: 25px 0 12px 0; }
+        h4 { color: #4a5568; margin: 20px 0 10px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        th { background: #f39c12; color: white; padding: 12px; text-align: left; }
+        td { padding: 12px; border-bottom: 1px solid #e2e8f0; }
+        tr:hover { background: #f7fafc; }
+        .code-block { background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 8px; overflow-x: auto; margin: 20px 0; font-family: 'Courier New', monospace; }
+        .alert { padding: 15px; margin: 20px 0; border-radius: 5px; border-left: 4px solid; }
+        .alert-info { background: #ebf8ff; border-color: #3182ce; color: #2c5282; }
+        .alert-warning { background: #fffaf0; border-color: #dd6b20; color: #7c2d12; }
+        .alert-success { background: #f0fff4; border-color: #38a169; color: #22543d; }
+        .badge { display: inline-block; padding: 4px 8px; border-radius: 3px; font-size: 0.85em; font-weight: bold; }
+        .badge-primary { background: #667eea; color: white; }
+        .badge-success { background: #48bb78; color: white; }
+        .badge-warning { background: #ed8936; color: white; }
+        .card { background: white; border-radius: 8px; padding: 20px; margin: 20px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        footer { margin-top: 50px; padding: 20px 0; border-top: 2px solid #e2e8f0; text-align: center; color: #718096; }
+        .breadcrumb { margin-bottom: 20px; color: #718096; }
+        .breadcrumb a { color: #667eea; text-decoration: none; }
+        code { background: #edf2f7; padding: 2px 6px; border-radius: 3px; font-family: 'Courier New', monospace; }
+        pre code { background: none; padding: 0; }
+        .highlight { background: #fff3cd; padding: 3px 6px; border-radius: 3px; font-weight: bold; }
+        .formula { background: #e8f5e9; padding: 15px; border-radius: 5px; margin: 15px 0; font-family: monospace; font-size: 1.1em; text-align: center; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>⏳ SINPENDAC</h1>
+            <p class="subtitle">Sinistro Pendente Aceito de Cosseguro</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="breadcrumb">
+  
+            <span>SINPENDAC</span>
+        </div>
+
+        <h1>⏳ SINPENDAC - Sinistro Pendente Aceito de Cosseguro</h1>
+
+        <div class="alert alert-info">
+            <strong>ℹ️ Descrição:</strong> Sinistros pendentes com reservas técnicas, representando valores provisionados mas ainda não pagos (IBNR - Incurred But Not Reported).
+        </div>
+
+        <h2>🔧 Especificações Técnicas</h2>
+        <table>
+            <tr>
+                <th>Propriedade</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td><strong>Módulo</strong></td>
+                <td>ClaimCase (Index) apenas</td>
+            </tr>
+            <tr>
+                <td><strong>Filtros</strong></td>
+                <td><code>BaseDate</code>, <code>owned_org_code=bmg</code></td>
+            </tr>
+            <tr>
+                <td><strong>Total de Campos</strong></td>
+                <td>15 campos</td>
+            </tr>
+            <tr>
+                <td><strong>Complexidade</strong></td>
+                <td><span class="badge badge-success">Baixa</span></td>
+            </tr>
+        </table>
+
+        <h2>📋 Estrutura do Arquivo CSV</h2>
+        <div class="code-block">
+SEQUENCIA|COD_CIA|DT_BASE|TIPO_MOV|COD_RAMO|COD_COSS|NUM_SIN|NUM_APOL|NUM_END|DT_REG|DT_AVISO|DT_OCOR|VR_PENDENTE|VR_TOT|TP_SIN
+0000000001|03417|202509|01|0553|05908|SIN123|POL123|END001|20250910|20250905|20250901|3000.00|7500.00|01
+        </div>
+
+        <h2>📝 Descrição dos Campos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Campo</th>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>SEQUENCIA</code></td>
+                    <td>Numérico</td>
+                    <td>Número sequencial do registro</td>
+                </tr>
+                <tr>
+                    <td><code>COD_CIA</code></td>
+                    <td>Texto</td>
+                    <td>Código da companhia (03417)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_BASE</code></td>
+                    <td>Texto</td>
+                    <td>Data base (YYYYMM)</td>
+                </tr>
+                <tr>
+                    <td><code>TIPO_MOV</code></td>
+                    <td>Numérico</td>
+                    <td>Tipo de movimento (convertido)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_RAMO</code></td>
+                    <td>Texto</td>
+                    <td>Código do ramo (<code>ExtBranchCode</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>COD_COSS</code></td>
+                    <td>Texto</td>
+                    <td>Código do cosseguro (05908)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_SIN</code></td>
+                    <td>Texto</td>
+                    <td>Número do sinistro (<code>ExtClaimNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_APOL</code></td>
+                    <td>Texto</td>
+                    <td>Número da apólice (<code>ExtPolicyNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>NUM_END</code></td>
+                    <td>Texto</td>
+                    <td>Número do endosso (<code>ExtEndoNo</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_REG</code></td>
+                    <td>Data</td>
+                    <td>Data de registro (<code>ExtRegistrationDate</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_AVISO</code></td>
+                    <td>Data</td>
+                    <td>Data do aviso (<code>NoticeTime</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>DT_OCOR</code></td>
+                    <td>Data</td>
+                    <td>Data da ocorrência (<code>AccidentTime</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>VR_PENDENTE</code></td>
+                    <td>Decimal</td>
+                    <td><span class="highlight">Valor pendente cedido</span> (<code>ExtCededCoinsuranceAmount</code>)</td>
+                </tr>
+                <tr>
+                    <td><code>VR_TOT</code></td>
+                    <td>Decimal</td>
+                    <td><span class="highlight">40% do valor total</span> (calculado)</td>
+                </tr>
+                <tr>
+                    <td><code>TP_SIN</code></td>
+                    <td>Texto</td>
+                    <td>Tipo do sinistro (<code>ExtClaimType</code>)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>🔄 Lógica de Negócio - Cálculo de Valores</h2>
+
+        <div class="alert alert-warning">
+            <strong>⚠️ Cálculo Especial:</strong> SINPENDAC possui um cálculo único para o campo <code>VR_TOT</code>, aplicando 40% sobre o valor total do movimento.
+        </div>
+
+        <h3>Fórmulas de Cálculo</h3>
+        <div class="formula">
+            VR_PENDENTE = ExtCededCoinsuranceAmount
+        </div>
+
+        <div class="formula">
+            VR_TOT = ExtMovementAmount × 0.40
+        </div>
+
+        <h3>Implementação</h3>
+        <pre><code class="language-groovy">// VR_PENDENTE: valor cedido ao cosseguro
+BigDecimal vrPendente = claimDoc.ExtCededCoinsuranceAmount ?: 0.00
+
+// VR_TOT: 40% do movimento total
+BigDecimal movementAmount = claimDoc.ExtMovementAmount ?: 0.00
+BigDecimal vrTot = movementAmount * 0.40
+
+generateLine(
+    vrPendente: vrPendente,
+    vrTot: vrTot,
+    // ... outros campos
+)</code></pre>
+
+        <h2>📊 Exemplo Numérico</h2>
+        <div class="card">
+            <h4>Cenário:</h4>
+            <ul>
+                <li><strong>ExtMovementAmount:</strong> R$ 10.000,00 (valor total do sinistro)</li>
+                <li><strong>ExtCededCoinsuranceAmount:</strong> R$ 3.000,00 (valor cedido ao cosseguro)</li>
+            </ul>
+
+            <h4>Cálculo:</h4>
+            <ul>
+                <li><strong>VR_PENDENTE:</strong> R$ 3.000,00 (direto do campo)</li>
+                <li><strong>VR_TOT:</strong> R$ 10.000,00 × 0.40 = <strong>R$ 4.000,00</strong></li>
+            </ul>
+
+            <h4>Resultado CSV:</h4>
+            <div class="code-block">
+...|VR_PENDENTE|VR_TOT|...
+...|3000.00|4000.00|...
+            </div>
+        </div>
+
+        <h2>🔢 Conversão de TipoMov (Completa)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>SUSEP</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="badge badge-primary">201</span></td>
+                    <td><span class="badge badge-success">01</span></td>
+                    <td>Aviso</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">204</span></td>
+                    <td><span class="badge badge-success">04</span></td>
+                    <td>Complementação</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">207</span></td>
+                    <td><span class="badge badge-success">07</span></td>
+                    <td>Pagamento</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">208</span></td>
+                    <td><span class="badge badge-success">08</span></td>
+                    <td>Pagamento complementar</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">211</span></td>
+                    <td><span class="badge badge-success">11</span></td>
+                    <td>Recuperação</td>
+                </tr>
+                <tr>
+                    <td><span class="badge badge-primary">214</span></td>
+                    <td><span class="badge badge-success">14</span></td>
+                    <td>Recuperação complementar</td>
+                </tr>
+                <tr>
+                    <td>Outros</td>
+                    <td><span class="badge badge-success">01</span></td>
+                    <td>Default</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <pre><code class="language-groovy">String resolveSusepMovType(String platformMovType) {
+    switch (platformMovType) {
+        case "201": return "01"
+        case "204": return "04"
+        case "207": return "07"
+        case "208": return "08"
+        case "211": return "11"
+        case "214": return "14"
+        default: return "01"
+    }
+}</code></pre>
+
+        <h2>🗂️ Fonte de Dados</h2>
+        <div class="card">
+            <h4>Estrutura JSON (ClaimCase):</h4>
+            <pre><code class="language-json">{
+  "ClaimId": 67890,
+  "ExtClaimNo": "SIN123",
+  "ExtPolicyNo": "POL123",
+  "ExtEndoNo": "END001",
+  "ExtRegistrationDate": "2025-09-10",
+  "NoticeTime": "2025-09-05T14:30:00",
+  "AccidentTime": "2025-09-01T10:00:00",
+  "ExtBranchCode": "0553",
+  "ExtClaimType": "01",
+  "ExtMovementType": "201",
+  "ExtCededCoinsuranceAmount": 3000.00,
+  "ExtMovementAmount": 7500.00
+}</code></pre>
+        </div>
+
+        <h2>📊 Comparativo de Campos Especiais</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Arquivo</th>
+                    <th>Campo 1</th>
+                    <th>Campo 2</th>
+                    <th>Observação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>SINAVAC</strong></td>
+                    <td>VR_MOV</td>
+                    <td>-</td>
+                    <td>Valor do movimento (direto)</td>
+                </tr>
+                <tr>
+                    <td><strong>SINPAGAC</strong></td>
+                    <td>VR_MOV</td>
+                    <td>-</td>
+                    <td>Valor pago (direto)</td>
+                </tr>
+                <tr>
+                    <td><strong>SINPENDAC</strong></td>
+                    <td>VR_PENDENTE</td>
+                    <td><span class="highlight">VR_TOT</span></td>
+                    <td>VR_TOT = valor × 0.40</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>📤 Saída do Arquivo</h2>
+        <table>
+            <tr>
+                <th>Item</th>
+                <th>Localização</th>
+            </tr>
+            <tr>
+                <td><strong>CSV de Export</strong></td>
+                <td><code>s3://bucket/export/SINPENDAC_202509_20260305_143022.csv</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log Detalhado</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/SINPENDAC/SINPENDAC_DETAILED_202509_20260305_143022.log</code></td>
+            </tr>
+            <tr>
+                <td><strong>Log de Erros</strong></td>
+                <td><code>s3://bucket/logs/2026-03-05/SINPENDAC/error/LOG_SINPENDAC_202509_*.csv</code></td>
+            </tr>
+        </table>
+
+        <h2>🚀 Exemplo de Uso</h2>
+        <pre><code class="language-groovy">// Executar export para setembro/2025
+process("202509")</code></pre>
+
+        <div class="alert alert-success">
+            <strong>✅ Resultado esperado:</strong>
+            <ul>
+                <li>15 sinistros pendentes → <strong>15 linhas</strong></li>
+                <li>VR_TOT calculado automaticamente (40% do total)</li>
+                <li>Processamento rápido (single module)</li>
+            </ul>
+        </div>
+
+        <h2>💡 O que é IBNR?</h2>
+        <div class="card">
+            <h4>Incurred But Not Reported (IBNR)</h4>
+            <p><strong>Definição:</strong> Reserva técnica para sinistros que já ocorreram mas ainda não foram reportados à seguradora.</p>
+            
+            <p><strong>Componentes do SINPENDAC:</strong></p>
+            <ul>
+                <li><strong>VR_PENDENTE:</strong> Valor conhecido e provisionado</li>
+                <li><strong>VR_TOT:</strong> Estimativa total incluindo IBNR (40% rule)</li>
+            </ul>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 BMG Seguros - Sistema de Exportação de Cosseguro</p>
+            <p>Última atualização: 05/03/2026 | Versão: 1.0.0</p>
+        </footer>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-groovy.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
 </body>
 </html>
+
